@@ -191,6 +191,7 @@ The Zendesk connector ideally should not run into Zendesk API limitations under 
 
 | Version     | Date       | Pull Request                                             | Subject                                                                                                                                                                                                                            |
 |:------------|:-----------|:---------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 5.1.1 | 2026-02-03 | [72624](https://github.com/airbytehq/airbyte/pull/72624) | Update dependencies |
 | 5.1.0 | 2026-02-02 | [71752](https://github.com/airbytehq/airbyte/pull/71752) | Add user-configurable page_size option for ticket_comments stream |
 | 5.0.3 | 2026-01-28 | [72423](https://github.com/airbytehq/airbyte/pull/72423) | Update breaking change deadline from Jan 31 to Jan 30 |
 | 5.0.2 | 2026-01-27 | [72380](https://github.com/airbytehq/airbyte/pull/72380) | Fix OAuth race condition with concurrent token refresh |
