@@ -8,7 +8,6 @@ import io.airbyte.cdk.load.command.Append
 import io.airbyte.cdk.load.command.DestinationStream
 import io.airbyte.cdk.load.command.ImportType
 import io.airbyte.cdk.load.command.NamespaceMapper
-import io.airbyte.cdk.load.data.ObjectTypeWithoutSchema
 import io.airbyte.cdk.load.schema.model.ColumnSchema
 import io.airbyte.cdk.load.schema.model.StreamTableSchema
 import io.airbyte.cdk.load.schema.model.TableName
@@ -50,18 +49,28 @@ internal class S3DataLakeTableCleanerTest {
         importType: ImportType = Append,
         generationId: Long = 1,
         minimumGenerationId: Long = 0
-    ) =
-        DestinationStream(
+    ): DestinationStream {
+        val tableSchema =
+            StreamTableSchema(
+                columnSchema =
+                    ColumnSchema(
+                        inputSchema = mapOf(),
+                        inputToFinalColumnNames = mapOf(),
+                        finalSchema = mapOf(),
+                    ),
+                importType = importType,
+                tableNames = TableNames(finalTableName = TableName("namespace", "test")),
+            )
+        return DestinationStream(
             unmappedNamespace = "testing",
             unmappedName = "test",
-            importType = importType,
-            schema = ObjectTypeWithoutSchema,
             generationId = generationId,
             minimumGenerationId = minimumGenerationId,
             syncId = 1,
             namespaceMapper = NamespaceMapper(),
-            tableSchema = emptyTableSchema,
+            tableSchema = tableSchema,
         )
+    }
 
     @Test
     fun testClearingTableWithPrefix() {
