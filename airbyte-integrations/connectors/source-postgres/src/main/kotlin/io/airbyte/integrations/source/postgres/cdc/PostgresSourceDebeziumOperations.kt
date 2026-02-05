@@ -118,9 +118,9 @@ class PostgresSourceDebeziumOperations(
             .with("plugin.name", "pgoutput")
             .with("slot.name", cdcConfig.replicationSlot)
             .with("publication.name", cdcConfig.publication)
+            .withHeartbeatTimeout(cdcConfig.airbyteHeartbeatTimeout)
     // TODO: heartbeat.action.query
     // TODO: SSL support
-    // TODO: airbyte.heartbeat.timeout.seconds
 
     override fun startup(offset: DebeziumOffset) {
         // Need to validate replication slot even on cold start.

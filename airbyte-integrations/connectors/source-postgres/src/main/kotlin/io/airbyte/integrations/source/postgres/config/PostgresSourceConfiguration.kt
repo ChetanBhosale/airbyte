@@ -36,7 +36,7 @@ import java.nio.charset.StandardCharsets
 import java.nio.file.FileSystems
 import java.nio.file.Paths
 import java.time.Duration
-import java.util.*
+import java.util.UUID
 import org.postgresql.PGProperty.CONNECT_TIMEOUT
 import org.postgresql.PGProperty.PREPARE_THRESHOLD
 import org.postgresql.PGProperty.TCP_KEEP_ALIVE
@@ -99,6 +99,7 @@ data class CdcIncrementalConfiguration(
     val replicationSlot: String,
     val publication: String,
     val debeziumCommitsLsn: Boolean,
+    val airbyteHeartbeatTimeout: Duration = Duration.ofSeconds(60),
 // TODO: Support this configuration:
 //  initial waiting time in seconds
 //  size of the queue
